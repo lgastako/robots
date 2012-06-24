@@ -12,7 +12,7 @@ if __name__ == "__main__":
           author_email="lgastako@gmail.com",
           url="https://github.com/lgastako/robots",
           provides=["robots"],
-          modules=["robots"]
+          modules=["robots"],
           classifiers=["Development Status :: 4 - Beta",
                        "Intended Audience :: Developers",
                        "License :: OSI Approved :: MIT License",
