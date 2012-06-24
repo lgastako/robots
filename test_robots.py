@@ -86,6 +86,22 @@ class TestUnwrappedAccess(RobotsTxtTests):
 
         assert len(robots._RFPS) == 1
 
+    def test_refresh_some_eager_by_url(self):
+        robots._RFPS = {}
+        robots.allow(self.USER_AGENT, self.ALLOWED_URL)
+        robots.allow(self.USER_AGENT, self.ALLOWED_URL2)
+        robots.allow(self.USER_AGENT, self.ALLOWED_URL3)
+
+        old_rfps = robots._RFPS.values()
+        assert len(robots._RFPS) == 3
+
+        robots.refresh("http://www.google.com/whatever", "www.yahoo.com")
+
+        assert len(robots._RFPS) == 3
+        new_rfps = robots._RFPS.values()
+        assert sum([1 if rfp in new_rfps else 0 for rfp in old_rfps]) == 1
+
+
 
 class TestSite(RobotsTxtTests):
 

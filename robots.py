@@ -40,6 +40,8 @@ def refresh(*args, **kwargs):
     lazy = kwargs.pop("lazy", False)
     if args:
         for host in args:
+            if "://" in host:
+                host = _host_from_url(host)
             if lazy:
                 del _RFPS[host]
             else:
